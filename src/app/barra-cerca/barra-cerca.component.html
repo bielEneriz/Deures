@@ -1,0 +1,25 @@
+<form #f="ngForm" (ngSubmit)="enviar()">
+  <label for="cerca">Buscar element</label>
+  <input
+    id="cerca"
+    name="cerca"
+    [(ngModel)]="text"
+    required
+    minlength="3"
+    #cerca="ngModel"
+  />
+  <div *ngIf="cerca.invalid && cerca.touched">
+    <small *ngIf="cerca.errors?.['required']">Obligatori</small>
+    <small *ngIf="cerca.errors?.['minlength']">Minim 3 caràcters</small>
+  </div>
+  <button type="submit" [disabled]="f.invalid">Buscar</button>
+</form>
+
+<style>
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+input.ng-valid.ng-touched {
+  border: 2px solid green;
+}
+</style>
